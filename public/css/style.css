@@ -1,0 +1,39 @@
+/* * {
+    border: 1px solid black;
+} */
+
+.row {
+    margin: auto;
+}
+
+.mbot-minus {
+    margin-bottom: -1px;
+}
+
+.post-card {
+    /* border: 1px solid black;  */
+    height: 375px; 
+    width: 300px;
+}
+
+.post-card-img {
+    height: 100%;
+    width: 100%;
+}
+
+.about-link-hover {
+    transition: background-color 0.3s;
+}
+
+.about-link-hover p {
+    font-size: 70px;
+    transition: color 0.3s;
+}
+
+.about-link-hover:hover {
+    background-color: #292b2c;
+}
+
+.about-link-hover:hover p {
+    color: #f7f7f7;
+}
