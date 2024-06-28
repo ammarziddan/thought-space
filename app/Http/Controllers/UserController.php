@@ -18,10 +18,15 @@ class UserController extends Controller
 
     public function show(User $user) 
     {
-        $posts = Post::where('user_id', $user->id)->paginate(5);
+        $posts = $user->posts()
+                      ->with(['tags', 'user'])
+                      ->filter(request(['search']))
+                      ->paginate(5)
+                      ->withQueryString();
 
         return view('user', [
             'title' => "$user->name | @$user->username",
+            'searchVal' => "Search stories from $user->name",
             'user' => $user,
             'posts' => $posts
         ]);

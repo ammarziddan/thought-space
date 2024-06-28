@@ -13,9 +13,9 @@
                 </div>
             </a>
             <div class="col-lg-6 d-flex flex-wrap column-gap-3 row-gap-1 border-start">
-                {{-- tags start --}}
-                <a href="#" class="badge rounded-pill text-bg-secondary text-decoration-none align-self-center">Automotive</a>
-                {{-- tags end --}}
+                @foreach ($post->tags as $tag)
+                <a href="/topics/{{ $tag->slug }}" class="badge rounded-pill text-bg-secondary text-decoration-none align-self-center">{{ $tag->name }}</a>
+                @endforeach
             </div>
         </div>
         <div class="border-top border-bottom px-3 py-2 d-flex justify-content-between">

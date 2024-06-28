@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row column-gap-3 flex-nowrap">
         <div class="col-lg-8">
-
             <div class="d-flex justify-content-between align-items-center px-4 py-3 mt-4 border-bottom">
                 <div><p class="fs-1 fw-bold">{{ $user->name }}</p></div>
                 <div><a href="{{ url()->current(); }}" class="text-decoration-none text-secondary fs-3" id="shareProfile" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy profile link"><i class="bi bi-link-45deg"></i></a></div>
             </div>
-
+            @include('partials.posts')
+{{-- 
             @foreach ($posts as $post)
             <div class="row border-bottom pb-3 mt-3">
                 <div class="d-flex">
@@ -36,7 +36,7 @@
 
             <div class="d-flex justify-content-center my-4">
                 {{ $posts->links() }}
-            </div>
+            </div> --}}
         </div>
         <div class="col-lg-4 border-start py-4 px-5">
             <img src="/img/{{ $user->image }}" alt="..." class="img-thumbnail rounded-circle mb-3" width="120">

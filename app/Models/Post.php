@@ -12,9 +12,22 @@ class Post extends Model
     protected $guarded = ['id'];
     // protected $with = ['...']
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('title', 'like', '%'.$search.'%')
+                         ->orWhere('body', 'like', '%'.$search.'%');
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tag')->withTimestamps();
     }
 
     public function getRouteKeyName()
