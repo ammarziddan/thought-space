@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TopicController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,11 @@ Route::get('/users/{user:username}', [UserController::class, 'show']);
 // TOPICS
 Route::get('/topics', [TopicController::class, 'index']);
 Route::get('/topics/{tag:slug}', [TopicController::class, 'show']);
+
+// Login
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+// Register
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'store']);
