@@ -16,11 +16,11 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('excerpt');
             $table->foreignId('user_id');
-            $table->string('thumbnail');
-            $table->string('img_desc');
+            $table->string('thumbnail')->default('default.jpg');
+            $table->string('img_desc')->nullable();
             $table->text('body');
             $table->timestamps();
         });

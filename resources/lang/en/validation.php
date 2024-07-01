@@ -130,8 +130,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'tags' => [
+            'max' => 'You can only select up to 4 topics',
+            'required' => 'Please select at least 1 topic',
         ],
     ],
 

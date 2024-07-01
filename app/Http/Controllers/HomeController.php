@@ -22,7 +22,7 @@ class HomeController extends Controller
             'title' => 'Thought Space', 
             'searchVal' => "What's on your mind?",
             'posts' => $posts,
-            'users' => User::latest()->take(4)->get(),
+            'users' => User::where('id', '!=', auth()->id())->latest()->take(4)->get(),
             'tags' => Tag::latest()->take(6)->get()
         ]);
     }

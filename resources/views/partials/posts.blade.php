@@ -14,15 +14,39 @@
     <div class="d-flex">
         <div class="col-8">
             <div class="d-flex align-items-center mb-2 p-0">
-                <a href="/users/{{ $post->user->username }}"><img src="/img/{{ $post->user->image }}" alt="{{ $post->user->username }}" class="img-thumbnail rounded-circle p-0" width="25"></a>
+                <a href="/users/{{ $post->user->username }}"><img src="/img/{{ $post->user->image }}" alt="{{ $post->user->username }}" class="img-thumbnail rounded-circle p-0" width="20"></a>
                 <a href="/users/{{ $post->user->username }}" class="text-decoration-none text-dark"><p class="mb-0 ms-3">{{ $post->user->name }}</p></a>
                 <p class="m-0 ms-1">in <a href="/topics/{{ $post->tags[0]->slug }}" class="text-decoration-none text-dark">{{ $post->tags[0]->name }}</a></p>
             </div>
             <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark">
-                <h2 class="m-0 mb-3 fs-4 fw-bold lh-1">{{ $post->title }}</h2>
-                <p>{{ $post->excerpt }}</p>
+                <h2 class="m-0 fs-4 fw-bold limit-str">{{ Str::limit($post->title, 100) }}</h2>
+                <p class="text-dark-emphasis">{{ $post->excerpt }}</p>
             </a>
-            <small class="text-secondary">{{ $post->created_at->diffForHumans() }}</small>
+            <div class="d-flex align-items-center">
+                <small class="text-dark-emphasis">{{ $post->created_at->diffForHumans() }}</small>
+                @if( isset($user) && auth()->check() && $user->username === auth()->user()->username )
+                <div class="ms-auto d-flex gap-3">
+                    {{-- other <a></a> --}}
+                    <div class="ms-auto dropdown">
+                        <a href="" class="border-0 bg-transparent fs-4 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/posts/{{ $post->slug }}/edit">Edit story</a>
+                            </li>
+                            <li>
+                                <form action="/posts/{{ $post->slug }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="text-danger dropdown-item" type="submit" onclick="return confirm('Are you sure want to delete this story?')">Delete story</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                @endif
+            </div>
         </div>
         <div class="col-4 d-flex align-items-center justify-content-center">
             <a href="/posts/{{ $post->slug }}">
@@ -34,7 +58,7 @@
 @endforeach
 
 @else
-<p class="fs-1 fw-bold text-secondary text-center my-5">No Post Found <i class="bi bi-emoji-frown"></i></p>
+<p class="fs-1 fw-bold text-dark-emphasis text-center my-5">No Story Found <i class="bi bi-emoji-frown"></i></p>
 @endif
 
 <div class="d-flex justify-content-center my-4">

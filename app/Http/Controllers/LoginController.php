@@ -15,7 +15,9 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            // TODO: ubah saat production!!
+            // 'email' => 'required|email:dns',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 
@@ -25,5 +27,16 @@ class LoginController extends Controller
         }
 
         return back()->with('error', 'Password or Email is incorrect');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
     }
 }

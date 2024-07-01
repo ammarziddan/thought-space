@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         return view('users', [
             'title' => 'Explore Authors',
-            'users' => User::all()
+            'users' => User::where('id', '!=', auth()->id())->get()
         ]);
     }
 
@@ -20,6 +20,7 @@ class UserController extends Controller
     {
         $posts = $user->posts()
                       ->with(['tags', 'user'])
+                      ->latest()
                       ->filter(request(['search']))
                       ->paginate(5)
                       ->withQueryString();

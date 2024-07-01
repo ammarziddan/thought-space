@@ -13,6 +13,19 @@
 
     {{-- Bootstrap Icons v1.11.3 --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    {{-- Choices.js --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css"/>
+
+    {{-- TRIX --}}
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
     
     {{-- Custom CSS --}}
     <link rel="stylesheet" href="/css/style.css">
@@ -29,6 +42,16 @@
     {{-- Bootstrap v5.3.3 Js + Popper --}}
     <script src="/js/bootstrap.bundle.min.js"></script>
 
+    {{-- Choices.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js" defer></script>
+
+    {{-- TRIX --}}
+    <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        });
+    </script>
+    
     {{-- script.js --}}
     <script src="/js/script.js"></script>
 </body>

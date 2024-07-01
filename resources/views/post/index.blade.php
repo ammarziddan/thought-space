@@ -18,11 +18,30 @@
                 @endforeach
             </div>
         </div>
-        <div class="border-top border-bottom px-3 py-2 d-flex justify-content-between">
+        <div class="border-top border-bottom px-3 py-2 d-flex align-items-center justify-content-between">
             <a href="#" class="text-decoration-none text-dark"><i class="bi bi-chat-text"></i> Comments</a>
-            <div>
+            <div class="d-flex align-items-center gap-3">
                 <a href="#" class="text-decoration-none text-dark"><i class="bi bi-hand-thumbs-up"></i></a>
-                <a href="#" class="text-decoration-none text-dark ms-3"><i class="bi bi-send"></i></a>
+                <a href="#" class="text-decoration-none text-dark"><i class="bi bi-send"></i></a>
+                @if( auth()->check() && $post->user->username === auth()->user()->username )
+                <div class="dropdown">
+                    <a href="" class="border-0 bg-transparent fs-4 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="/posts/{{ $post->slug }}/edit">Edit story</a>
+                        </li>
+                        <li>
+                            <form action="/posts/{{ $post->slug }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="text-danger dropdown-item" type="submit" onclick="return confirm('Are you sure want to delete this story?')">Delete story</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                @endif
             </div>
         </div>
     </div>

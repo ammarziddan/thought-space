@@ -31,4 +31,17 @@ class TopicController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $term = $request->input('q');
+        $topics = Tag::where('name', 'LIKE', "%$term%")
+                         ->limit(10)
+                         ->get()
+                         ->map(function($topic) {
+                            return ['id' => $topic->id, 'text' => $topic->name];
+                         });
+        
+        return response()->json($topics);
+    }
 }

@@ -6,7 +6,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StoryController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\WriteController;
 use App\Http\Controllers\RegisterController;
 
 /*
@@ -29,7 +31,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 // POST
 // Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+// Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+Route::resource('/posts', PostController::class);
 
 // USER
 Route::get('/users', [UserController::class, 'index']);
@@ -40,9 +43,12 @@ Route::get('/topics', [TopicController::class, 'index']);
 Route::get('/topics/{tag:slug}', [TopicController::class, 'show']);
 
 // Login
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 
+// Logout
+Route::post('/logout', [LoginController::class, 'logout']);
+
 // Register
-Route::get('/register', [RegisterController::class, 'create']);
+Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);

@@ -8,19 +8,39 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto gap-3">
+        <ul class="navbar-nav ms-auto gap-3 align-items-center">
           <li class="nav-item">
             <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" aria-current="page" href="{{ route('about') }}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-pencil-square"></i> Write</a>
+            <a class="nav-link {{ request()->is('posts/create') ? 'active' : '' }} d-flex align-items-center gap-1" href="/posts/create"><i class="bi bi-pencil-square fs-5"></i> Write</a>
           </li>
+
+          @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Welcome back, {{ auth()->user()->name }}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/users/{{ auth()->user()->username }}">Profile <i class="bi bi-person"></i></a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form action="/logout" method="post">
+                  @csrf
+                  <button type="submit" class="dropdown-item">Logout <i class="bi bi-box-arrow-right"></i></button>
+                </form>
+              </li>
+            </ul>
+          </li>
+          @else
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
           <li class="nav-item align-self-center">
             <a class="nav-link p-0" href="/register"><span class="btn btn-dark rounded-pill">Get Started</span></a>
           </li>
+          @endauth
+
         </ul>
       </div>
     </div>

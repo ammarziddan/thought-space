@@ -37,3 +37,32 @@
 .about-link-hover:hover p {
     color: #f7f7f7;
 }
+
+.input-title {
+    min-height: 50px;
+    overflow: hidden;
+    resize: none;
+    border-radius: 0;
+    border: none;
+    border-left: 1px solid #6c757d;
+    transition: border-color 0.3s ease;
+}
+
+.input-title:focus {
+    outline: none;
+    box-shadow: none;
+    border-left: 1.5px solid #212529;
+}
+
+.limit-str {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: .2em;
+}
+
+.dropdown-item:focus {
+    background-color: #f7f7f7;
+}
