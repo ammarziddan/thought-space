@@ -1,3 +1,21 @@
+// preview image create story
+function imagePreview() {
+    const image = document.querySelector('#thumbnail');
+    const imgPreview = document.querySelector('.img-preview');
+
+    imgPreview.classList.add('border','img-fluid');
+    // imgPreview.classList.add('border');
+    imgPreview.style.display = 'block';
+    imgPreview.style.width = '100%';
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.files[0]);
+
+    oFReader.onload = function(oFREvent) {
+        imgPreview.src = oFREvent.target.result;
+    };
+}
+
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize tooltip

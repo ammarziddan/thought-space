@@ -28,7 +28,7 @@
         <form action="/login" method="POST">
             @csrf
             <div class="mb-4 position-relative">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" autofocus required value="{{ old('email') }}">
+                <input type="email" class="form-control rounded-pill @error('email') is-invalid @enderror" name="email" placeholder="Email" autofocus required value="{{ old('email') }}">
                 @error('email')
                 <div class="invalid-feedback position-absolute ms-3" style="top: 90%">
                     {{ $message }}
@@ -36,7 +36,7 @@
                 @enderror
             </div>
             <div class="mb-4 position-relative">
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                <input type="password" class="form-control rounded-pill" name="password" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-dark rounded-pill mt-2 login-button">Login</button>
         </form>

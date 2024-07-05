@@ -32,7 +32,9 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 // POST
 // Route::get('/posts', [PostController::class, 'index']);
 // Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-Route::resource('/posts', PostController::class);
+Route::resource('/posts', PostController::class)->names([
+    'create' => 'posts.create'
+]);
 
 // USER
 Route::get('/users', [UserController::class, 'index']);

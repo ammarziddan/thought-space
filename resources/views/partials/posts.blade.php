@@ -8,6 +8,11 @@
     </form>
 </div>
 
+{{-- new story button --}}
+@if( isset($user) && auth()->check() && $user->username === auth()->user()->username )
+<a href="{{ route('posts.create') }}" class="btn btn-outline-success border-0 rounded-pill"><i class="bi bi-file-earmark-plus"></i> Write a story</a>
+@endif
+
 @if( $posts->count() > 0 )
 @foreach ($posts as $post)
 <div class="row border-bottom pb-3 mt-3">

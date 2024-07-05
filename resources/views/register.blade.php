@@ -12,7 +12,7 @@
         <form action="/register" method="POST">
             @csrf
             <div class="mb-4 position-relative">
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" autofocus required value="{{ old('name') }}">
+                <input type="text" class="form-control rounded-pill @error('name') is-invalid @enderror" name="name" placeholder="Name" autofocus required value="{{ old('name') }}">
                 @error('name')
                 <div class="invalid-feedback position-absolute ms-3" style="top: 90%">
                     {{ $message }}
@@ -20,7 +20,7 @@
                 @enderror
             </div>
             <div class="mb-4 position-relative">
-                <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Username" required value="{{ old('username') }}">
+                <input type="text" class="form-control rounded-pill @error('username') is-invalid @enderror" name="username" placeholder="Username" required value="{{ old('username') }}">
                 @error('username')
                 <div class="invalid-feedback position-absolute ms-3" style="top: 90%">
                     {{ $message }}
@@ -28,7 +28,7 @@
                 @enderror
             </div>
             <div class="mb-4 position-relative">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" required value="{{ old('email') }}">
+                <input type="email" class="form-control rounded-pill @error('email') is-invalid @enderror" name="email" placeholder="Email" required value="{{ old('email') }}">
                 @error('email')
                 <div class="invalid-feedback position-absolute ms-3" style="top: 90%">
                     {{ $message }}
@@ -36,7 +36,7 @@
                 @enderror
             </div>
             <div class="mb-4 position-relative">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
+                <input type="password" class="form-control rounded-pill @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
                 @error('password')
                 <div class="invalid-feedback position-absolute ms-3" style="top: 90%">
                     {{ $message }}

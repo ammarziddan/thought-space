@@ -29,7 +29,7 @@
             @include('partials.posts')
         </div>
         <div class="col-lg-4 border-start py-4 px-5">
-            <img src="/img/{{ $user->image }}" alt="..." class="img-thumbnail rounded-circle mb-3" width="120">
+            <img src="/img/{{ $user->image }}" alt="{{ $user->username }}" class="img-thumbnail rounded-circle mb-3" width="120">
             <p class="fs-5 fw-bolder">{{ $user->name }}</p>
             <p class="text-secondary">2.3k Followers</p>
             <p>{{ $user->short_bio }}</p>

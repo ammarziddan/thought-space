@@ -89,7 +89,7 @@
             {{-- start more from --}}
             <div class="post-card d-flex-column justify-content-between align-items-between">
                 <div style="height: 180px">
-                    <img src="/img/default.jpg" alt="..." class="object-fit-cover post-card-img">
+                    <img src="/img/story-images/default.jpg" alt="..." class="object-fit-cover post-card-img">
                 </div>
                 <div class="mt-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-0">
@@ -106,7 +106,7 @@
             </div>
             <div class="post-card d-flex-column justify-content-between align-items-between">
                 <div style="height: 180px">
-                    <img src="/img/default.jpg" alt="..." class="object-fit-cover post-card-img">
+                    <img src="/img/story-images/default.jpg" alt="..." class="object-fit-cover post-card-img">
                 </div>
                 <div class="mt-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-0">
@@ -123,7 +123,7 @@
             </div>
             <div class="post-card d-flex-column justify-content-between align-items-between">
                 <div style="height: 180px">
-                    <img src="/img/default.jpg" alt="..." class="object-fit-cover post-card-img">
+                    <img src="/img/story-images/default.jpg" alt="..." class="object-fit-cover post-card-img">
                 </div>
                 <div class="mt-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-0">
@@ -151,7 +151,7 @@
             {{-- start more from --}}
             <div class="post-card d-flex-column justify-content-between align-items-between">
                 <div style="height: 180px">
-                    <img src="/img/default.jpg" alt="..." class="object-fit-cover post-card-img">
+                    <img src="/img/story-images/default.jpg" alt="..." class="object-fit-cover post-card-img">
                 </div>
                 <div class="mt-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-0">
@@ -168,7 +168,7 @@
             </div>
             <div class="post-card d-flex-column justify-content-between align-items-between">
                 <div style="height: 180px">
-                    <img src="/img/default.jpg" alt="..." class="object-fit-cover post-card-img">
+                    <img src="/img/story-images/default.jpg" alt="..." class="object-fit-cover post-card-img">
                 </div>
                 <div class="mt-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-0">
@@ -185,7 +185,7 @@
             </div>
             <div class="post-card d-flex-column justify-content-between align-items-between">
                 <div style="height: 180px">
-                    <img src="/img/default.jpg" alt="..." class="object-fit-cover post-card-img">
+                    <img src="/img/story-images/default.jpg" alt="..." class="object-fit-cover post-card-img">
                 </div>
                 <div class="mt-4">
                     <a href="#" class="d-flex align-items-center text-decoration-none text-dark p-0">

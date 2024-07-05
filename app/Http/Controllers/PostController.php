@@ -48,17 +48,28 @@ class PostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:150|min:5',
+            'thumbnail' => 'mimes:jpg,jpeg,png,bmp,webp|max:1024',
             'img_desc' => 'nullable',
             'tags' => 'required|max:4',
             'body' => 'required'
         ]);
 
+        $thumbnail = $request->file('thumbnail');// atur storage di filesystems.php
+
+        if( $thumbnail !== null ) {
+            $validatedData['thumbnail'] = $thumbnail->store('story-images');
+        } else {
+            $validatedData['thumbnail'] = "/story-images/default.jpg";
+        }
+
+        // return $validatedData['thumbnail'];
+
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 100);
 
         $post = Post::create($validatedData);
-
         $post->tags()->sync($validatedData['tags']);
+
         return redirect('/users/'.auth()->user()->username)->with('success', 'Congratulations! Your story has just been published.');
     }
 

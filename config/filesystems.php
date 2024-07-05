@@ -50,8 +50,10 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            // 'root' => storage_path('app/public'), //menyimpan di app/public dari 'url'
+            'root' => public_path('img'),
+            // 'url' => env('APP_URL').'/storage', //untuk menyimpan di folder storage
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 

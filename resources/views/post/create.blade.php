@@ -14,9 +14,17 @@
                     </div>
                     @enderror
                 </div>
+
+                {{-- Image/Thumbnail --}}
                 <div class="mb-3">
                     <label for="thumbnail" class="ms-1 mb-2">Thumbnail</label>
-                    <input type="file" class="form-control" id="thumbnail" name="thumbnail">
+                    <img class="mb-2 p-1 img-fluid img-preview">
+                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" onchange="return imagePreview()">
+                    @error('thumbnail')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="img_desc" class="ms-1 mb-2">Image description & source (optional)</label>
@@ -40,6 +48,7 @@
                     </select>
                 </div>
                 <label class="ms-1 mb-2">Body</label>
+
                 {{-- TRIX EDITOR --}}
                 @error('body')
                 <p class="text-danger">{{ $message }}</p>
@@ -54,6 +63,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

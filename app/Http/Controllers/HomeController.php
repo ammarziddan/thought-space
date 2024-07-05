@@ -13,10 +13,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::with(['user', 'tags'])
-                       ->latest()
-                       ->filter(request(['search']))
-                       ->paginate(5)
-                       ->withQueryString();
+                    ->where('user_id', '!=', auth()->id())
+                    ->latest()
+                    ->filter(request(['search']))
+                    ->paginate(5)
+                    ->withQueryString();
 
         return view('home', [
             'title' => 'Thought Space', 
