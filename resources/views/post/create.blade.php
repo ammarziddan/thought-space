@@ -28,7 +28,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="img_desc" class="ms-1 mb-2">Image description & source (optional)</label>
-                    <input type="text" class="form-control" id="img_desc" name="img_desc" value="{{ old('img_desc') }}">
+                    <input type="text" class="form-control @error('img_desc') is-invalid @enderror" id="img_desc" name="img_desc" value="{{ old('img_desc') }}">
+                    @error('img_desc')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 {{-- Choices.js --}}

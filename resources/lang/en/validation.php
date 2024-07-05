@@ -134,6 +134,9 @@ return [
             'max' => 'You can only select up to 4 topics',
             'required' => 'Please select at least 1 topic',
         ],
+        'img_desc' => [
+            'max' => 'The image description may not be greater than 255 characters'
+        ]
     ],
 
     /*

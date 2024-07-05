@@ -19,14 +19,14 @@
             </div>
         </div>
         <div class="border-top border-bottom px-3 py-2 d-flex align-items-center justify-content-between">
-            <a href="#" class="text-decoration-none text-dark"><i class="bi bi-chat-text"></i> Comments</a>
+            <a href="#" class="text-decoration-none text-secondary"><i class="bi bi-chat-text"></i> Comments</a>
             <div class="d-flex align-items-center gap-3">
-                <a href="#" class="text-decoration-none text-dark"><i class="bi bi-hand-thumbs-up"></i></a>
-                <a href="#" class="text-decoration-none text-dark"><i class="bi bi-send"></i></a>
+                <a href="#" class="text-decoration-none text-secondary"><i class="bi bi-hand-thumbs-up"></i></a>
+                <a href="#" class="text-decoration-none text-secondary"><i class="bi bi-send"></i></a>
                 @if( auth()->check() && $post->user->username === auth()->user()->username )
                 <div class="dropdown">
                     <a href="" class="border-0 bg-transparent fs-4 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-three-dots"></i>
+                        <i class="bi bi-three-dots text-secondary"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li>

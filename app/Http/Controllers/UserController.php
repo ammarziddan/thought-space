@@ -32,4 +32,32 @@ class UserController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function settings(User $user)
+    {
+        return view('user.setting', [
+            'title' => 'Account Settings',
+            'user' => $user
+        ]);
+    }
+
+    public function update (Request $request) 
+    {
+        if ($user->id !== auth()->id()) {
+            abort(403);
+        }
+
+        $user = auth()->user();
+
+        $rules = [];
+        // $data = [];
+
+        if( $request->has('name') || $request->has('short_bio') || $request->has('image') ) {
+            $rules['name'] = 'required|max:255';
+            $rules['short_bio'] = 'nullable|max:1000';
+            $rules['image'] = 'nullable|mimes:jpg,jpeg,png,bmp,webp|max:1024';
+        }
+
+
+    }
 }

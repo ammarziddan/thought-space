@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -121,13 +122,23 @@ class PostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:150|min:5',
-            'img_desc' => 'nullable',
+            'thumbnail' => 'mimes:jpg,jpeg,png,bmp,webp|max:1024',
+            'img_desc' => 'nullable|max:255',
             'tags' => 'required|array|max:4',
             'body' => 'required'
         ]);
 
+
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 100);
+
+        // image file
+        if($request->file('thumbnail')) {
+            if( $post->thumbnail !== "/story-images/default.jpg" ) {
+                Storage::disk('public')->delete($post->thumbnail);
+            }
+            $validatedData['thumbnail'] = $request->file('thumbnail')->store('story-images');
+        }
         
         $post->update($validatedData);
 

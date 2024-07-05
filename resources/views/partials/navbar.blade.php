@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg border-bottom">
+<nav class="navbar navbar-expand-lg border-bottom px-lg-3">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="/img/logo.png" alt="Logo" height="30" class="d-inline-block align-text-top">
@@ -18,16 +18,18 @@
 
           @auth
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome back, {{ auth()->user()->name }}
+            <a class="nav-link p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/img/{{ auth()->user()->image }}" alt="profile" height="40" class="border rounded-circle">
+              {{-- Welcome back, {{ auth()->user()->name }} --}}
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/users/{{ auth()->user()->username }}">Profile <i class="bi bi-person"></i></a></li>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/users/{{ auth()->user()->username }}"><i class="bi bi-person"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="/users/{{ auth()->user()->username }}/settings"><i class="bi bi-person-gear"></i> Account Settings</a></li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <form action="/logout" method="post">
                   @csrf
-                  <button type="submit" class="dropdown-item">Logout <i class="bi bi-box-arrow-right"></i></button>
+                  <button type="submit" class="dropdown-item lh-sm">Logout <small class="d-block text-secondary">{{ auth()->user()->username }}</small></button>
                 </form>
               </li>
             </ul>

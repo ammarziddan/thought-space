@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-8 py-5 form-container">
-            <form action="/posts/{{ $post->slug }}" method="post">
+            <form action="/posts/{{ $post->slug }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="mb-3 py-3">
@@ -15,13 +15,25 @@
                     </div>
                     @enderror
                 </div>
-                {{-- <div class="mb-3">
+                {{-- Image/Thumbnail --}}
+                <div class="mb-3">
                     <label for="thumbnail" class="ms-1 mb-2">Thumbnail</label>
-                    <input type="file" class="form-control" id="thumbnail" name="thumbnail">
-                </div> --}}
+                    <img class="mb-2 p-1 img-fluid img-preview d-block border" src="/img/{{ $post->thumbnail }}">
+                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" onchange="return imagePreview()">
+                    @error('thumbnail')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
                 <div class="mb-3">
                     <label for="img_desc" class="ms-1 mb-2">Image description & source (optional)</label>
-                    <input type="text" class="form-control" id="img_desc" name="img_desc" value="{{ old('img_desc', $post->img_desc) }}">
+                    <input type="text" class="form-control @error('img_desc') is-invalid @enderror" id="img_desc" name="img_desc" value="{{ old('img_desc', $post->img_desc) }}">
+                    @error('img_desc')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
 
                 {{-- Choices.js --}}

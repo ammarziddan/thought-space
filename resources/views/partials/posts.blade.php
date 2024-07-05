@@ -31,10 +31,9 @@
                 <small class="text-dark-emphasis">{{ $post->created_at->diffForHumans() }}</small>
                 @if( isset($user) && auth()->check() && $user->username === auth()->user()->username )
                 <div class="ms-auto d-flex gap-3">
-                    {{-- other <a></a> --}}
                     <div class="ms-auto dropdown">
                         <a href="" class="border-0 bg-transparent fs-4 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-three-dots"></i>
+                            <i class="bi bi-three-dots text-secondary"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li>

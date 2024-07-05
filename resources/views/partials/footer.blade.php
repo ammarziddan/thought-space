@@ -1,10 +1,10 @@
-{{-- <footer class="border-top" style="margin-top: -1px">
+<footer class="border-top" style="margin-top: -1px">
     <div class="col-lg-6 mx-auto">
-        <div class="container d-flex justify-content-around py-3">
-            <a href="" class="text-decoration-none text-secondary">Help</a>
-            <a href="{{ route('about') }}" class="text-decoration-none text-secondary">About</a>
-            <a href="" class="text-decoration-none text-secondary">Instagram</a>
-            <a href="" class="text-decoration-none text-secondary">Twitter or X</a>
+        <div class="container d-flex justify-content-around py-2">
+            <a href="" class="text-secondary"><small>Help</small></a>
+            <a href="{{ route('about') }}" class="text-secondary"><small>About</small></a>
+            <a href="" class="text-secondary"><small>Instagram</small></a>
+            <a href="" class="text-secondary"><small>Twitter or X</small></a>
         </div>
     </div>
-</footer> --}}
+</footer>

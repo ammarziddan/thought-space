@@ -20,7 +20,7 @@
     <a href="/" class="text-decoration-none text-dark px-5 border about-link-hover" style="margin-bottom: -1px">
         <p class="my-3">Start reading <i class="bi bi-arrow-right float-end"></i></p>
     </a>
-    <a href="" class="text-decoration-none text-dark px-5 border about-link-hover">
+    <a href="/posts/create" class="text-decoration-none text-dark px-5 border about-link-hover">
         <p class="my-3">Start writing <i class="bi bi-arrow-right float-end"></i></p>
     </a>
 </div>

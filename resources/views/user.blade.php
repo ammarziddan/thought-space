@@ -2,12 +2,14 @@
 
 @section('container')
 <div class="container">
+    
     @if (session()->has('success'))
     <div class="alert alert-success fixed-top col-lg-4 col-9 mx-auto mt-4 alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+
     <div class="row column-gap-3 flex-nowrap">
         <div class="col-lg-8">
             <div class="d-flex justify-content-between align-items-center px-4 py-3 mt-4">
@@ -33,9 +35,16 @@
             <p class="fs-5 fw-bolder">{{ $user->name }}</p>
             <p class="text-secondary">2.3k Followers</p>
             <p>{{ $user->short_bio }}</p>
+            @if ( auth()->check() && $user->username === auth()->user()->username )
+            <div class="d-flex gap-2 align-items-start">
+                <a href="#" class="btn btn-outline-success btn-sm rounded-pill">edit profile</a>
+                <a href="#" class="btn btn-outline-secondary btn-sm rounded-pill">Account Settings</a>
+            </div>
+            @else
             <div class="d-flex">
                 <a href="#" class="btn btn-success rounded-pill">Follow</a>
             </div>
+            @endif
         </div>
     </div>
 </div>
