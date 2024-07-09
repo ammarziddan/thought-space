@@ -51,7 +51,7 @@
             e.preventDefault();
         });
     </script>
-    
+
     {{-- script.js --}}
     <script src="/js/script.js"></script>
 </body>

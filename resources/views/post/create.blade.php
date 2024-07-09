@@ -17,9 +17,9 @@
 
                 {{-- Image/Thumbnail --}}
                 <div class="mb-3">
-                    <label for="thumbnail" class="ms-1 mb-2">Thumbnail</label>
+                    <label for="image-preview" class="ms-1 mb-2">Thumbnail</label>
                     <img class="mb-2 p-1 img-fluid img-preview">
-                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="thumbnail" name="thumbnail" onchange="return imagePreview()">
+                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror" id="image-preview" name="thumbnail" onchange="return imagePreview()">
                     @error('thumbnail')
                     <div class="invalid-feedback">
                         {{ $message }}

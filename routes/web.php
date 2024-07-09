@@ -39,10 +39,11 @@ Route::resource('/posts', PostController::class)->names([
 // USER
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user:username}', [UserController::class, 'show']);
-Route::get('/users/{user:username}/settings', [UserController::class, 'settings'])->name('usersetting.index');
 // USER UPDATE
-Route::patch('/users/settings', [UserController::class, 'update'])->middleware('auth')->name('usersetting.update');
+Route::get('/users/{user:username}/settings', [UserController::class, 'settings'])->name('usersetting.index');
+Route::patch('/users/{user:username}/settings', [UserController::class, 'update'])->middleware('auth')->name('usersetting.update');
 // USER DELETE
+
 
 // TOPICS
 Route::get('/topics', [TopicController::class, 'index']);

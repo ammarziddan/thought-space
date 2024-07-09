@@ -1,13 +1,21 @@
 @extends('layouts.main')
 
 @section('container')
+
+@if (session()->has('success'))
+<div class="alert alert-success fixed-top col-lg-4 col-9 mx-auto mt-4 alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <div class="row justify-content-center">
     <div class="col-lg-8 mx-3">
         <h1 class="border-bottom pt-5 pb-3 px-3 mb-3">Settings</h1>
         
         <!-- Profile trigger modal -->
         <div class="position-relative mx-3 p-3 border-bottom">
-            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link" data-bs-toggle="modal" data-bs-target="#profileInfoModal">
+            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link gap-3" data-bs-toggle="modal" data-bs-target="#profileInfoModal">
                 <p class="m-0">Profile Information <small class="d-block text-secondary">Edit your photo, name, and short bio</small></p>
                 <div class="d-flex gap-3 align-items-center">
                     <p class="m-0">{{ $user->name }}</p>
@@ -17,28 +25,28 @@
         </div>
         <!-- email trigger modal -->
         <div class="position-relative mx-3 p-3 border-bottom">
-            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link" data-bs-toggle="modal" data-bs-target="#emailModal">
+            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link gap-3" data-bs-toggle="modal" data-bs-target="#emailModal">
                 <p class="m-0">Email address</p>
                 <p class="m-0">{{ $user->email }}</p>
             </a>
         </div>
         <!-- username trigger modal -->
         <div class="position-relative mx-3 p-3 border-bottom">
-            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link" data-bs-toggle="modal" data-bs-target="#usernameModal">
+            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link gap-3" data-bs-toggle="modal" data-bs-target="#usernameModal">
                 <p class="m-0">Username</p>
                 <p class="m-0">{{ $user->username }}</p>
             </a>
         </div>
         {{-- password trigger modal --}}
         <div class="position-relative mx-3 p-3 border-bottom">
-            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+            <a role="button" class="d-flex align-items-center justify-content-between text-decoration-none text-dark stretched-link gap-3" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                 <p class="m-0">Change password</p>
                 <p class="m-0"><i class="bi bi-arrow-up-right"></i></p>
             </a>
         </div>
         {{-- delete account trigger modal --}}
         <div class="mx-3 p-3 mb-5">
-            <a role="button" class="text-decoration-none col-lg-6" data-bs-toggle="modal" data-bs-target="#profileInfoModal">
+            <a role="button" class="text-decoration-none col-lg-6" data-bs-toggle="modal" data-bs-target="#deleteAccModal">
                 <p class="m-0 text-danger d-inline">Delete account <br></p>
                 <small class="text-secondary">Permanently delete your account and all of it's content</small>
             </a>
@@ -46,53 +54,7 @@
         
 
         <!-- profile info modal -->
-        <div class="modal fade" id="profileInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-fullscreen-sm-down">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Profile Information</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('usersetting.update') }}" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3 d-flex gap-3 align-items-center">
-                            <img src="/img/{{ $user->image }}" alt="profile image" width="100" class="img-thumbnail border rounded-circle">
-                            <div>
-                                <div>
-                                    <a href="#" class="text-decoration-none text-success">Update</a>
-                                    <a href="#" class="text-decoration-none text-danger ms-1">Remove</a>
-                                </div>
-                                <small class="text-secondary m-0">Acceptable Image Formats: JPG, JPEG, PNG, BMP, WEBP <br>Maximum File Size: 1024 kilobytes (1 MB)</small>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="ms-1 mb-2">Name<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $user->name) }}">
-                            @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="short_bio" class="ms-1 mb-2">Short bio</label>
-                            <textarea class="form-control @error('short_bio') is-invalid @enderror" name="short_bio" id="short_bio" rows="3">{{ old('short_bio', $user->short_bio) }}</textarea>
-                            @error('short_bio')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success rounded-pill">Save changes</button>
-                    </div>
-                </form>
-            </div>
-            </div>
-        </div>
+        @include('partials.profileinfo')
 
         {{-- Email address modal --}}
         <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,8 +64,9 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Email Address</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('usersetting.update') }}" method="post">
+                <form action="{{ route('usersetting.update', ['user' => auth()->user()->username]) }}" method="post">
                     @csrf
+                    @method('patch')
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="email" class="ms-1 mb-2">Email address<span class="text-danger">*</span></label>
@@ -117,7 +80,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success rounded-pill">Save changes</button>
+                        <button type="submit" class="btn btn-success rounded-pill">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -132,8 +95,9 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Username</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('usersetting.update') }}" method="post">
+                <form action="{{ route('usersetting.update', ['user' => auth()->user()->username]) }}" method="post">
                     @csrf
+                    @method('patch')
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="username" class="ms-1 mb-2">Username<span class="text-danger">*</span></label>
@@ -147,7 +111,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success rounded-pill">Save changes</button>
+                        <button type="submit" class="btn btn-success rounded-pill">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -215,7 +179,41 @@
 
               </div>
             </div>
-          </div>
+        </div>
+
+        <div class="modal fade" id="deleteAccModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-sm-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <p>
+                                We're sorry to see you go. Are you sure you want to delete your account? Your account and all your content will be permanently lost.
+                            </p>
+                            <p>
+                                Please type <strong>'delete'</strong> in the input below to confirm.
+                            </p>
+                            <input type="text" class="form-control @error('...') is-invalid @enderror" id="..." name="...">
+                            @error('...')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger rounded-pill">Delete account</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

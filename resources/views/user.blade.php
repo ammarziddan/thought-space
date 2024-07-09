@@ -37,8 +37,8 @@
             <p>{{ $user->short_bio }}</p>
             @if ( auth()->check() && $user->username === auth()->user()->username )
             <div class="d-flex gap-2 align-items-start">
-                <a href="#" class="btn btn-outline-success btn-sm rounded-pill">edit profile</a>
-                <a href="#" class="btn btn-outline-secondary btn-sm rounded-pill">Account Settings</a>
+                <a class="btn btn-outline-success btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#profileInfoModal">Edit profile</a>
+                <a href="{{ route('usersetting.index', ['user' => auth()->user()->username]) }}" class="btn btn-outline-secondary btn-sm rounded-pill">Account Settings</a>
             </div>
             @else
             <div class="d-flex">
@@ -46,6 +46,9 @@
             </div>
             @endif
         </div>
+
+        @include('partials.profileinfo')
+
     </div>
 </div>
 @endsection
