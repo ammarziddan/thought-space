@@ -29,6 +29,10 @@ Route::get('/', [HomeController::class, 'index']);
 // ABOUT
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+// TOPICS
+Route::get('/topics', [TopicController::class, 'index']);
+Route::get('/topics/{tag:slug}', [TopicController::class, 'show']);
+
 // POST
 // Route::get('/posts', [PostController::class, 'index']);
 // Route::get('/posts/{post:slug}', [PostController::class, 'show']);
@@ -45,9 +49,7 @@ Route::patch('/users/{user:username}/settings', [UserController::class, 'update'
 // USER DELETE
 
 
-// TOPICS
-Route::get('/topics', [TopicController::class, 'index']);
-Route::get('/topics/{tag:slug}', [TopicController::class, 'show']);
+
 
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

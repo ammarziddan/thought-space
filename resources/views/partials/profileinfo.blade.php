@@ -1,3 +1,4 @@
+@can('admin')
 <div class="modal fade" id="profileInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen-sm-down">
     <div class="modal-content">
@@ -50,3 +51,4 @@
     </div>
     </div>
 </div>
+@endcan
