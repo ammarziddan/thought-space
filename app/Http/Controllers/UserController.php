@@ -69,6 +69,7 @@ class UserController extends Controller
         $validatedData = $request->validate($rules);
 
         // Profile Image
+        // TODO: hapus gambar lama jika berubah
         if($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('profiles');
         }
