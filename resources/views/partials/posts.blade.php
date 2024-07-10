@@ -9,9 +9,15 @@
 </div>
 
 {{-- new story button --}}
-@if( isset($user) && auth()->check() && $user->username === auth()->user()->username )
-<a href="{{ route('posts.create') }}" class="btn btn-outline-success border-0 rounded-pill"><i class="bi bi-file-earmark-plus"></i> Write a story</a>
+{{-- @if( isset($user)$user->username === auth()->user()->username ) --}}
+@if( isset($user) )
+    @auth
+        @can('view', $user)
+        <a href="{{ route('posts.create') }}" class="btn btn-outline-success border-0 rounded-pill"><i class="bi bi-file-earmark-plus"></i> Write a story</a>
+        @endcan
+    @endauth
 @endif
+{{-- @endif --}}
 
 @if( $posts->count() > 0 )
 @foreach ($posts as $post)

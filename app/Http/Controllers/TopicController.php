@@ -16,13 +16,9 @@ class TopicController extends Controller
         ]);
     }
 
-    public function show(Tag $tag)
+    public function show(Request $request, Tag $tag)
     {
-        $posts = $tag->posts()
-                     ->with(['user', 'tags'])
-                     ->filter(request(['search']))
-                     ->paginate(5)
-                     ->withQueryString();
+        $posts = Post::getFilteredPosts($request, $tag);
 
         return view('topic', [
             'title' => $tag->name,

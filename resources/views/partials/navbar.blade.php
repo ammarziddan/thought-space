@@ -13,6 +13,9 @@
             <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" aria-current="page" href="{{ route('about') }}">About</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {{ request()->is('topics') ? 'active' : '' }}" aria-current="page" href="/topics">Topics</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ request()->is('posts/create') ? 'active' : '' }} d-flex align-items-center gap-1" href="/posts/create"><i class="bi bi-pencil-square fs-5"></i> Write</a>
           </li>
 

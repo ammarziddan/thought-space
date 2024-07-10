@@ -35,7 +35,9 @@
 <body>
     @include('partials.navbar')
 
+    <div style="min-height: 100vh">
     @yield('container')
+    </div>
 
     @include('partials.footer')
 

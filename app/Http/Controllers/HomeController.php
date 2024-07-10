@@ -10,14 +10,9 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with(['user', 'tags'])
-                    ->where('user_id', '!=', auth()->id())
-                    ->latest()
-                    ->filter(request(['search']))
-                    ->paginate(5)
-                    ->withQueryString();
+        $posts = Post::getFilteredPosts($request);
 
         return view('home', [
             'title' => 'Thought Space', 

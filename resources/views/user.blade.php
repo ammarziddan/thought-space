@@ -35,16 +35,23 @@
             <p class="fs-5 fw-bolder">{{ $user->name }}</p>
             <p class="text-secondary">2.3k Followers</p>
             <p>{{ $user->short_bio }}</p>
-            @if ( auth()->check() && $user->username === auth()->user()->username )
-            <div class="d-flex gap-2 align-items-start">
-                <a class="btn btn-outline-success btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#profileInfoModal">Edit profile</a>
-                <a href="{{ route('usersetting.index', ['user' => auth()->user()->username]) }}" class="btn btn-outline-secondary btn-sm rounded-pill">Account Settings</a>
-            </div>
+            @auth
+                @can('view', $user)
+                <div class="d-flex gap-2 align-items-start">
+                    <a class="btn btn-outline-success btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#profileInfoModal">Edit profile</a>
+                    <a href="{{ route('usersetting.index', ['user' => auth()->user()->username]) }}" class="btn btn-outline-secondary btn-sm rounded-pill">Account Settings</a>
+                </div>
+                @else
+                <div class="d-flex">
+                    <a href="#" class="btn btn-success rounded-pill">Follow</a>
+                </div>
+                @endcan
             @else
             <div class="d-flex">
-                <a href="#" class="btn btn-success rounded-pill">Follow</a>
+                <a href="/login" class="btn btn-success rounded-pill">Follow</a>
             </div>
-            @endif
+            @endauth
+            
         </div>
 
         @include('partials.profileinfo')

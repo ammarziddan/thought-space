@@ -34,8 +34,6 @@ Route::get('/topics', [TopicController::class, 'index']);
 Route::get('/topics/{tag:slug}', [TopicController::class, 'show']);
 
 // POST
-// Route::get('/posts', [PostController::class, 'index']);
-// Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::resource('/posts', PostController::class)->names([
     'create' => 'posts.create'
 ]);
@@ -47,7 +45,6 @@ Route::get('/users/{user:username}', [UserController::class, 'show']);
 Route::get('/users/{user:username}/settings', [UserController::class, 'settings'])->name('usersetting.index');
 Route::patch('/users/{user:username}/settings', [UserController::class, 'update'])->middleware('auth')->name('usersetting.update');
 // USER DELETE
-
 
 
 

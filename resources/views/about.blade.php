@@ -10,7 +10,7 @@
 
             <p>We believe that what you read and write matters. Words can divide or empower, inspire or discourage. In a world where sensational and shallow stories often dominate, we’re creating a system that values depth, nuance, and meaningful engagement. Thought Space is a place for thoughtful conversations rather than fleeting opinions, emphasizing substance over style.</p>
 
-            <p class="fs-3 lh-sm">Our ultimate goal is to enhance our collective understanding of the world through the power of writing.</p>
+            <p class="fs-3 lh-sm fst-italic"><span class="fw-bold fs-1">"</span>Our ultimate goal is to enhance our collective understanding of the world through the power of writing.<span class="fw-bold fs-1">"</span></p>
 
             <p>Instead of relying on ads or selling your data, Thought Space is supported by a growing community of members who share our mission. If you're new here, start exploring. Delve into topics that matter to you. Find posts that help you learn something new or reconsider something familiar—and then share your own story.</p>
         </div>

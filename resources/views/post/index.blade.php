@@ -23,25 +23,27 @@
             <div class="d-flex align-items-center gap-3">
                 <a href="#" class="text-decoration-none text-secondary"><i class="bi bi-hand-thumbs-up"></i></a>
                 <a href="#" class="text-decoration-none text-secondary"><i class="bi bi-send"></i></a>
-                @if( auth()->check() && $post->user->username === auth()->user()->username )
-                <div class="dropdown">
-                    <a href="" class="border-0 bg-transparent fs-4 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-three-dots text-secondary"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="/posts/{{ $post->slug }}/edit">Edit story</a>
-                        </li>
-                        <li>
-                            <form action="/posts/{{ $post->slug }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button class="text-danger dropdown-item" type="submit" onclick="return confirm('Are you sure want to delete this story?')">Delete story</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                @endif
+                @auth
+                    @can('view', $post)
+                    <div class="dropdown">
+                        <a href="" class="border-0 bg-transparent fs-4 text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots text-secondary"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/posts/{{ $post->slug }}/edit">Edit story</a>
+                            </li>
+                            <li>
+                                <form action="/posts/{{ $post->slug }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="text-danger dropdown-item" type="submit" onclick="return confirm('Are you sure want to delete this story?')">Delete story</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    @endcan
+                @endauth
             </div>
         </div>
     </div>

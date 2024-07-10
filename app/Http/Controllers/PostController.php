@@ -51,7 +51,7 @@ class PostController extends Controller
             'title' => 'required|max:150|min:5',
             'thumbnail' => 'mimes:jpg,jpeg,png,bmp,webp|max:1024',
             'img_desc' => 'nullable',
-            'tags' => 'required|max:4',
+            'tags' => 'required|array|max:4',
             'body' => 'required'
         ]);
 
@@ -82,10 +82,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $posts = Post::latest()->filter(request(['search']))
-                               ->paginate(5)
-                               ->withQueryString();
-
         return view('post.index', [
             'title' => "{$post->title} | {$post->user->name}",
             'post' => $post
@@ -100,9 +96,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        if($post->user->id !== auth()->user()->id) {
-            abort(403);
-        }
+        $this->authorize('view', $post);
 
         return view('post.edit', [
             'title' => "Edit $post->title",
@@ -155,9 +149,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if($post->user->id !== auth()->user()->id) {
-            abort(403);
-        }
+        $this->authorize('delete', $post);
 
         $post->tags()->detach();
 

@@ -2,16 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
     use HasFactory, Sluggable;
 
     protected $guarded = ['id'];
-    // protected $with = ['...']
+    // protected $with = ['user', 'tags'];
+
+    public static function getFilteredPosts(Request $request, $relation = null)
+    {
+        $query = self::with(['user', 'tags']);
+        if ($relation) {
+            $query = $relation->posts()->with(['user', 'tags']);
+        }
+
+        return $query->latest()
+                     ->filter($request->only(['search']))
+                     ->paginate(5)
+                     ->withQueryString();
+    }
 
     public function scopeFilter($query, array $filters)
     {

@@ -16,14 +16,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(User $user) 
+    public function show(Request $request, User $user) 
     {
-        $posts = $user->posts()
-                      ->with(['tags', 'user'])
-                      ->latest()
-                      ->filter(request(['search']))
-                      ->paginate(5)
-                      ->withQueryString();
+        $posts = Post::getFilteredPosts($request, $user);
 
         return view('user', [
             'title' => "$user->name | @$user->username",
@@ -35,6 +30,12 @@ class UserController extends Controller
 
     public function settings(User $user)
     {
+        // if ($user->id !== auth()->id()) {
+        //     abort(403);
+        // }
+
+        $this->authorize('update', $user);
+
         return view('user.setting', [
             'title' => 'Account Settings',
             'user' => $user
@@ -43,9 +44,11 @@ class UserController extends Controller
 
     public function update (Request $request, User $user) 
     {
-        if ($user->id !== auth()->id()) {
-            abort(403);
-        }
+        // if ($user->id !== auth()->id()) {
+        //     abort(403);
+        // }
+
+        $this->authorize('update', $user);
 
         $rules = [];
 
@@ -80,7 +83,7 @@ class UserController extends Controller
 
         $newUsername = $user->username;
 
-        return redirect('/users/' . $newUsername . '/settings')->with('success', 'Successfully updated your account!');
+        return redirect()->back()->with('success', 'Successfully updated your account!');
 
     }
 }

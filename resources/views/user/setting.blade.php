@@ -126,23 +126,21 @@
                   <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Change Password</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                {{-- VERIFY CURRENT PASSWORD --}}
+                <form action="" method="post">
                 <div class="modal-body">
-                  
-                    {{-- VERIFY CURRENT PASSWORD --}}
-                    <form action="" method="post">
-                        <label for="current_password" class="ms-1 mb-2">Current password</label>
-                        <input type="text" class="form-control @error('current_password') is-invalid @enderror" id="current_password" name="current_password">
-                        @error('current_password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </form>
-
+                    <label for="current_password" class="ms-1 mb-2">Current password</label>
+                    <input type="text" class="form-control @error('current_password') is-invalid @enderror" id="current_password" name="current_password">
+                    @error('current_password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="modal-footer">
                   <button class="btn btn-success rounded-pill" data-bs-target="#newPassword" data-bs-toggle="modal">Verify</button>
                 </div>
+                </form>
               </div>
             </div>
           </div>
